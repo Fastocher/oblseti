@@ -51,7 +51,7 @@ function smtp_phpmailer_init( $phpmailer ){
 
 	$phpmailer->Host       = 'smtp.yandex.ru';
 	$phpmailer->Username   = 'info-oblseti@yandex.ru';
-	$phpmailer->Password   = 'brusilov1916gg';
+	$phpmailer->Password   = '***';
 	$phpmailer->SMTPAuth   = true;
 	$phpmailer->SMTPSecure = 'ssl';
 
