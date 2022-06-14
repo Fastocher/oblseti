@@ -17,9 +17,20 @@
       echo '<link rel="stylesheet" href="'.get_template_directory_uri( ).'/assets/css/category.css">';
     }
   ?>
-
+  <?php 
+    if( is_404() ){
+      echo '<link rel="stylesheet" href="'.get_template_directory_uri( ).'/assets/css/404.css">';
+    }
+  ?>
 </head>
 <body>
+  <?php 
+    if( is_404() ){
+     ?> 
+     <div class="footer-bottom">
+     <?php
+    }
+  ?>
   <header class="header">
     <div class="container header__container">
         <?php
@@ -41,8 +52,10 @@
         ?>
         
       <div class="header__right">
+
+      
         <nav class="nav menu-nav">
-            <?php wp_nav_menu( ['container' => '', 'menu' => 'main',]  );?>
+            <?php wp_nav_menu( ['container' => '', 'menu' => 'main','add_li_class'  => 'header-menu__item', 'add_li_class_sub' => 'sub-class']);?> 
         </nav>
       </div>
     </div>

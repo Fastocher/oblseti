@@ -35,3 +35,7 @@ if (form_filled) {
         form.reset();
     });
 }
+
+if ( name === freeformContentFallbackBlock ) { 
+    innerHTML = autop( innerHTML ).trim(); 
+} 
