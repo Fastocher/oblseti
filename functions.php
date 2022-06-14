@@ -53,7 +53,7 @@ function smtp_phpmailer_init( $phpmailer ){
 
 	$phpmailer->Host       = 'smtp.yandex.ru';
 	$phpmailer->Username   = 'info-oblseti@yandex.ru';
-	$phpmailer->Password   = 'brusilov1916gg';
+	$phpmailer->Password   = '***';
 	$phpmailer->SMTPAuth   = true;
 	$phpmailer->SMTPSecure = 'ssl';
 
@@ -178,6 +178,7 @@ function register_my_widgets(){
 }
 
 remove_filter('widget_text_content', 'wpautop');
+<<<<<<< HEAD
 
 
 add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
@@ -218,3 +219,5 @@ function change_wp_nav_menu( $classes, $args, $depth ) {
 
 	return $classes;
 }
+=======
+>>>>>>> 5284c9fbe7a9f1e336d7f817d199d9d58072e173
