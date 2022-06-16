@@ -22,6 +22,11 @@
       echo '<link rel="stylesheet" href="'.get_template_directory_uri( ).'/assets/css/404.css">';
     }
   ?>
+  <?php 
+    if( is_page_template('requisites.php') ){
+      echo '<link rel="stylesheet" href="'.get_template_directory_uri( ).'/assets/css/requisites.css">';
+    }
+  ?>
 </head>
 <body>
   <?php 

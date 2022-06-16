@@ -1,0 +1,23 @@
+.requisites {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    font-size: 16px;
+}
+.requisites-content {
+    padding-top: 100px;
+}
+
+.requisites p {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 10px;
+}
+.footer-bottom {
+	min-height: 100vh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+}

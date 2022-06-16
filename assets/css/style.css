@@ -7,44 +7,10 @@
     font-style: normal;     
 }
 
-@font-face {
-    font-family: 'Bebas';
-    src: url('../fonts/bebas/BebasNeue-Thin.woff') format('woff');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}
 
-@font-face {
-    font-family: 'Bebas';
-    src: url('../fonts/bebas/BebasNeue-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bebas';
-    src: url('../fonts/bebas/BebasNeue-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Bebas';
-    src: url('../fonts/bebas/BebasNeue-Book.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-
-@font-face {
-    font-family: 'Bebas';
-    src: url('../fonts/bebas/BebasNeue-bold.woff') format('woff');
-    font-weight: 700;
-}
+html {
+    scroll-behavior: smooth;
+}  
 
 
 *{
@@ -82,9 +48,31 @@ body {
     background-color: #131313;
 }
 
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color:#ff4848 #2b2b2b;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    max-width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #2b2b2b;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #ff4848;
+    border-radius: 20px;
+  }
+
+
+
 .container {
     max-width: 1200px;
-    /* padding: 0 15px; */
     margin: 0 auto;
 }
 
@@ -113,7 +101,7 @@ body {
     top: 0;
     width: 100%;
     background-color: #131313;
-
+    z-index: 10;
     padding: 20px 0;
 }
 
@@ -142,18 +130,20 @@ body {
     list-style: none;
 }
 
-.menu-item a {
+.menu li > a {
     position: relative;
     font-size: 14px;
     color: aliceblue;
+    transition: color 0.3s ease-in-out;
+    cursor: pointer;
 }
 
-.menu-item a[aria-current] {
+.menu li > a[aria-current] {
     color: var(--accent-color);
 }
 
 .content {
-    padding-top: 40px;
+    padding-top: 90px;
     padding-bottom: 40px;
 }
 
@@ -169,7 +159,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: calc(100vh - 200px);
+    height: 80vh;
 }
 
 .intro__text {
@@ -183,7 +173,7 @@ body {
 
 .intro__btn {
     padding: 15px 30px;
-
+    margin-right: 10px;
     font-family: "IgraSans", sans-serif;
     font-weight: 400;
     color: aliceblue;
@@ -191,6 +181,13 @@ body {
     border: none;
     border-radius: 12px;
     background-color: var(--accent-color);
+
+    transition: color 0.3s ease-in-out;
+}
+
+.btn_lk {
+    background-color: aliceblue;
+    color: #131313;
 }
 
 .tarifs {
@@ -198,9 +195,17 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
+.tarif-grid__img,
+.cctv-grid__img {
+    transition: transform .3s; /* Animation */
+    max-height: 420px;
+    cursor: pointer;
+}
 
-.tarif-grid__img {
 
+.tarif-grid__img:hover,
+.cctv-grid__img:hover {
+    transform: scale(1.1); 
 }
 
 .features {
@@ -217,9 +222,26 @@ body {
     padding-right: 100px;
 }
 
+.features-list__item {
+    transition: color 0.3s ease-in-out;
+}
+
 .features-list__item:not(:last-child) {
     padding-bottom: 10px;
+    
 }
+
+
+.cctv {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
 
 .news {
     display: flex;
@@ -230,7 +252,7 @@ body {
 .news-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
+    gap: 75px;
 }
 
 .news-grid__item .news-post {
@@ -280,8 +302,13 @@ body {
 .news-post__title {
     position: absolute;
     bottom: 40px;
-    
     z-index: 5;
+    color: #131313;
+    background-color: #ffffff;
+    margin-right: 40px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 400;
 }
 
 .contact {
@@ -295,6 +322,7 @@ body {
     flex-direction: column;
     flex-wrap: nowrap;
     width: 800px;
+    scroll-margin-top: 250px;
 }
 
 .contact-form__title {
@@ -325,6 +353,7 @@ body {
     border: none;
     border-radius: 12px;
     background-color: var(--accent-color);  
+    transition: color 0.3s ease-in-out;
 }
 
 .footer {
@@ -414,6 +443,7 @@ body {
 .sub-menu li:hover {
     background-color: #2b2b2b;
 }
+
 .menu li {
     position: relative;
 }
@@ -428,4 +458,14 @@ body {
 
 .sub-menu li {
     padding: 10px 20px;
+}
+
+.intro__btn:hover,
+.contact-form__btn:hover  {
+    background-color: aliceblue;
+    color: #131313;
+}
+
+.features-list__item:hover {
+    color: var(--accent-color);
 }

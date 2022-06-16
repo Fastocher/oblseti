@@ -175,10 +175,17 @@ function register_my_widgets(){
 		'before_widget' => null,
 		'after_widget'  => null,
 	) );
+	register_sidebar( array(
+		'name'          => esc_html__('requisites', 'ob'),
+		'id'            => 'requisites',
+		'description'   => '',
+		'class'         => '',
+		'before_widget' => null,
+		'after_widget'  => null,
+	) );
 }
 
 remove_filter('widget_text_content', 'wpautop');
-<<<<<<< HEAD
 
 
 add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
@@ -219,5 +226,4 @@ function change_wp_nav_menu( $classes, $args, $depth ) {
 
 	return $classes;
 }
-=======
->>>>>>> 5284c9fbe7a9f1e336d7f817d199d9d58072e173
+
