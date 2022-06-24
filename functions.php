@@ -6,7 +6,10 @@ function oblseti_assets() {
     wp_enqueue_style( 'style', get_template_directory_uri(  ). '/assets/css/style.css' );
 
     wp_enqueue_script('script', get_template_directory_uri(  ).'/assets/js/script.js', '20151215', true );
-}
+
+	wp_enqueue_script('recaptcha','https://www.google.com/recaptcha/api.js', true );
+
+}	
 
 add_action( 'wp_enqueue_scripts', 'oblseti_assets' );
 
@@ -37,63 +40,6 @@ function theme_register_nav_menu() {
 	register_nav_menu( 'footer-column-1', 'footer menu' );
     register_nav_menu( 'main', 'main menu' );
 }
-
-
-
-
-
-
-add_action( 'phpmailer_init', 'smtp_phpmailer_init' );
-
-function smtp_phpmailer_init( $phpmailer ){
-
-	$phpmailer->IsSMTP();
-
-	$phpmailer->CharSet    = 'UTF-8';
-
-	$phpmailer->Host       = 'smtp.yandex.ru';
-	$phpmailer->Username   = 'info-oblseti@yandex.ru';
-	$phpmailer->Password   = '***';
-	$phpmailer->SMTPAuth   = true;
-	$phpmailer->SMTPSecure = 'ssl';
-
-	$phpmailer->Port       = 465;
-	$phpmailer->From       = 'info-oblseti@yandex.ru';
-	$phpmailer->FromName   = 'oblseti';
-
-	$phpmailer->isHTML( true );
-   
-}
-
-add_action('wp_ajax_nopriv_callback_mail', 'callback_mail');
-add_action('wp_ajax_callback_mail', 'callback_mail');
-
-function callback_mail() {
-
-	$name = $POST['name'];
-	$phone = $POST['phone'];
-	$message = $POST['message'];
-
-	$to = 'info-oblseti@yandex.ru';
-	$subject = 'asd';
-	$message = 'asd';
-
-	remove_all_filters( 'wp_mail_from' );
-	remove_all_filters( 'wp_mail_from_name' );
-	 
-	$headers = array(
-		'From: Me Myself <me@example.net>',
-		'content-type: text/html',
-		'Cc: John Q Codex <jqc@wordpress.org>',
-		'Cc: iluvwp@wordpress.org', // тут можно использовать только простой email адрес
-	);
-
-
-
-	wp_mail( $to, $subject, $message, $headers );
-	wp_die( );
-}
-
 
 function custom_pagination() {
 	ob_start();
@@ -227,3 +173,44 @@ function change_wp_nav_menu( $classes, $args, $depth ) {
 	return $classes;
 }
 
+function disable_emoji_feature() {
+	
+	// Prevent Emoji from loading on the front-end
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+	// Remove from admin area also
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+	// Remove from RSS feeds also
+	remove_filter( 'the_content_feed', 'wp_staticize_emoji');
+	remove_filter( 'comment_text_rss', 'wp_staticize_emoji');
+
+	// Remove from Embeds
+	remove_filter( 'embed_head', 'print_emoji_detection_script' );
+
+	// Remove from emails
+	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+
+	// Disable from TinyMCE editor. Currently disabled in block editor by default
+	add_filter( 'tiny_mce_plugins', 'disable_emojis_tinymce' );
+
+	/** Finally, prevent character conversion too
+         ** without this, emojis still work 
+         ** if it is available on the user's device
+	 */
+
+	add_filter( 'option_use_smilies', '__return_false' );
+
+}
+
+function disable_emojis_tinymce( $plugins ) {
+	if( is_array($plugins) ) {
+		$plugins = array_diff( $plugins, array( 'wpemoji' ) );
+	}
+	return $plugins;
+}
+
+add_action('init', 'disable_emoji_feature');
+add_filter( 'option_use_smilies', '__return_false' );

@@ -13,7 +13,7 @@
                             the_post();
                     ?>
                             <li class="category-grid__item">
-                                <article class="category-post" style="background-image:url('<?php echo get_the_post_thumbnail_url(); ?>') ;">
+                                <article class="category-post" style="background:linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.3) 100%),url('<?php echo get_the_post_thumbnail_url(); ?>') ;">
                                     <?php
                                     $category = get_the_category();
                                     $cat_link = get_category_link($category[0]);

@@ -1,5 +1,5 @@
 .post-banner {
-    padding: 90px; 
+    padding: 90px 20px 20px 20px; 
 }
 
 .post-banner__container {
@@ -71,8 +71,8 @@
 .post-links__link {
     display: inline-flex;
     align-items: center;
-    padding: 0 17px;
-    height: 43px;
+    padding: 10px 17px;
+
     background-color: #fff;
     color: #131313;
     border-radius: 12px;
@@ -94,4 +94,19 @@
     background-position: calc(100% - 16px) center;
     background-repeat: no-repeat;
     padding-right: 40px;
+}
+
+
+@media screen and (max-width: 479px) {
+    .post-banner {
+        padding: 20px;
+        padding-top: 90px;
+    }
+    .post-banner__container {
+        height: 150px;
+    }
+    .post-links__link {
+        max-height: 45px;
+        font-size: 10px;
+    }
 }

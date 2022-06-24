@@ -30,7 +30,7 @@
 </head>
 <body>
   <?php 
-    if( is_404() ){
+    if( is_404() or is_category() ){
      ?> 
      <div class="footer-bottom">
      <?php
@@ -42,7 +42,7 @@
             if( is_front_page() ){
                 ?>
                     <a class="logo header__logo">
-                        <img src="<?php echo get_template_directory_uri(  );?>/assets/img/logo_min.png" alt="">
+                        <img src="<?php echo get_template_directory_uri(  );?>/assets/img/logo.png" alt="">
                     </a>
                     
                 <?php
@@ -50,7 +50,7 @@
             else {
                 ?>
                     <a href="<?php echo home_url(); ?>" class="logo header__logo">
-                        <img src="<?php echo get_template_directory_uri(  );?>/assets/img/logo_min.png" alt="">
+                        <img src="<?php echo get_template_directory_uri(  );?>/assets/img/logo.png" alt="">
                     </a>
                 <?php    
             }
@@ -60,7 +60,7 @@
 
       
         <nav class="nav menu-nav">
-            <?php wp_nav_menu( ['container' => '', 'menu' => 'main','add_li_class'  => 'header-menu__item', 'add_li_class_sub' => 'sub-class']);?> 
+            <?php wp_nav_menu( ['container' => '', 'menu' => 'main','add_li_class'  => 'header-menu__item noselect', 'add_li_class_sub' => 'sub-class']);?> 
         </nav>
       </div>
     </div>
